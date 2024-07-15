@@ -22,6 +22,11 @@ We utilized the [6000+ Recipe Dataset](https://www.kaggle.com/datasets/kanishk30
 
 1. **Simulation Creation**: The generated JSON is used to simulate the cooking process, guiding the flow of the machine.
 
+### Object Detection
+1. **Dataset_sources** : [Spices Dataset](https://data.mendeley.com/datasets/vg77y9rtjb/1)   [Vegetables dataset](https://www.kaggle.com/datasets/misrakahmed/vegetable-image-dataset)
+2. After receiving the ingredients from actions.json the trained model searches for matching ingredients in the conveyor, which is then passed to the required vessel.
+
+
 ### Hardware Integration
 
 1. **Execution of Instructions**: The instructions in [actions.json](https://github.com/jithin-rajesh/Custom-AI-Kitchen/blob/main/actions.json) are used to execute cooking steps.
