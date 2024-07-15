@@ -32,6 +32,7 @@ We utilized the [6000+ Recipe Dataset](https://www.kaggle.com/datasets/kanishk30
 - [Recipe Selection Code](https://github.com/jithin-rajesh/Custom-AI-Kitchen/blob/main/recipe_app.py)
 - [Processed Recipes JSON](https://github.com/jithin-rajesh/Custom-AI-Kitchen/blob/main/processed_recipes.json)
 - [Simulation Code](https://github.com/jithin-rajesh/Custom-AI-Kitchen/blob/main/)
+- [Object Detection Code](https://github.com/jithin-rajesh/Custom-AI-Kitchen/tree/main/object_detection)
 - [Hardware Control Code](https://github.com/jithin-rajesh/Custom-AI-Kitchen/blob/main/hardware.py)
 
 This comprehensive approach ensures a seamless experience from selecting a recipe to preparing a dish, making cooking an automated and effortless task.
