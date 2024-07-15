@@ -1,26 +1,37 @@
 # Custom AI Kitchen
-This project uses generative AI, object detection and Raspberry Pi to create an automated kitchen that uses a dataset with over 6500 recipes to make a dish of a user's choice.
 
-## 1. Problem to solve
-Build an application that can create a dish after getting user's input.
+This project integrates generative AI, object detection, and Raspberry Pi to create an automated kitchen capable of preparing a dish based on user input. Leveraging a dataset with over 6,500 recipes, the system guides users from recipe selection to cooking the meal.
 
-## 2. Data 
-We used the [6000+ Recipe Dataset](https://www.kaggle.com/datasets/kanishk307/6000-indian-food-recipes-dataset) from which user's can enter a keyword of partial title to get a recipe of their choice.
+## 1. Problem to Solve
 
-## 3. What we did
-[Recipe Selection](https://github.com/jithin-rajesh/Custom-AI-Kitchen/blob/main/recipe_app.py) 
+The aim is to develop an application that can prepare a dish by following a user's input, automating the entire cooking process.
 
-1. The dataset was converted to the JSON format, [processed_recipes.json](https://github.com/jithin-rajesh/Custom-AI-Kitchen/blob/main/processed_recipes.json).
-2. The users can enter a keyword or partial title to search for a dish of their choice. A recipe can be selected from a dropdown containing matching recipes, recipe information which contains title, ingredients, cooking time, prep time and instructions will be shown.
-3. Users are then given an option to G=generate a JSON file,[actions.json](). Here, Google's LLM Gemini is used to convert the recipe into detailed step-by-step instructions in a machine operable format.
+## 2. Data
 
-[Simulation](https://github.com/jithin-rajesh/Custom-AI-Kitchen/blob/main/) 
+We utilized the [6000+ Recipe Dataset](https://www.kaggle.com/datasets/kanishk307/6000-indian-food-recipes-dataset) which allows users to enter keywords or partial titles to retrieve a recipe of their choice.
 
-1. The generated JSON is used to create a simulation alongside the flow of the machine.
+## 3. What We Did
 
-[Hardware Side](https://github.com/jithin-rajesh/Custom-AI-Kitchen/blob/main/hardware.py)
+### Recipe Selection
 
-1. The instructions in [actions.json](https://github.com/jithin-rajesh/Custom-AI-Kitchen/blob/main/actions.json) is then used to execute steps for cooking the dish.
-2. A Raspberry Pi 4 with GPIO is used for the execution, GPIO pins are assigned for each step.
+1. **Data Conversion**: The dataset was converted into a JSON format, resulting in the file [processed_recipes.json](https://github.com/jithin-rajesh/Custom-AI-Kitchen/blob/main/processed_recipes.json).
+2. **Search Functionality**: Users can enter a keyword or partial title to search for a dish. A dropdown menu displays matching recipes, from which users can select one to view detailed information, including the title, ingredients, cooking time, prep time, and instructions.
+3. **JSON Generation**: After selecting a recipe, users can generate a JSON file, [actions.json](). Google's LLM Gemini is employed to convert the recipe into detailed, step-by-step instructions that are machine-operable.
 
+### Simulation
 
+1. **Simulation Creation**: The generated JSON is used to simulate the cooking process, guiding the flow of the machine.
+
+### Hardware Integration
+
+1. **Execution of Instructions**: The instructions in [actions.json](https://github.com/jithin-rajesh/Custom-AI-Kitchen/blob/main/actions.json) are used to execute cooking steps.
+2. **Raspberry Pi 4**: A Raspberry Pi 4 with GPIO is employed to control the execution. GPIO pins are assigned for each step, enabling the automation of various cooking tasks.
+
+## Links to Key Files
+
+- [Recipe Selection Code](https://github.com/jithin-rajesh/Custom-AI-Kitchen/blob/main/recipe_app.py)
+- [Processed Recipes JSON](https://github.com/jithin-rajesh/Custom-AI-Kitchen/blob/main/processed_recipes.json)
+- [Simulation Code](https://github.com/jithin-rajesh/Custom-AI-Kitchen/blob/main/)
+- [Hardware Control Code](https://github.com/jithin-rajesh/Custom-AI-Kitchen/blob/main/hardware.py)
+
+This comprehensive approach ensures a seamless experience from selecting a recipe to preparing a dish, making cooking an automated and effortless task.
