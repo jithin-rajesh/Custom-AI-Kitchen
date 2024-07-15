@@ -36,7 +36,7 @@ We utilized the [6000+ Recipe Dataset](https://www.kaggle.com/datasets/kanishk30
 
 - [Recipe Selection Code](https://github.com/jithin-rajesh/Custom-AI-Kitchen/blob/main/recipe_app.py)
 - [Processed Recipes JSON](https://github.com/jithin-rajesh/Custom-AI-Kitchen/blob/main/processed_recipes.json)
-- [Simulation Code](https://github.com/jithin-rajesh/Custom-AI-Kitchen/blob/main/)
+- [Simulation Code]([https://github.com/jithin-rajesh/Custom-AI-Kitchen/blob/main/](https://github.com/jithin-rajesh/Custom-AI-Kitchen/blob/main/simulation.py))
 - [Object Detection Code](https://github.com/jithin-rajesh/Custom-AI-Kitchen/tree/main/object_detection)
 - [Hardware Control Code](https://github.com/jithin-rajesh/Custom-AI-Kitchen/blob/main/hardware.py)
 
