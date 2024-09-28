@@ -1,25 +1,19 @@
 import json
+import google.generativeai as genai
 import streamlit as st
 
-# Function to search for recipes based on a query
-def search_recipes(query):
+# Function to load all recipes from the JSON file
+def load_recipes():
     try:
         with open('processed_recipes.json', 'r') as file:
             recipes = json.load(file)
-
-        matching_recipes = [
-            recipe for recipe in recipes if query.lower() in recipe['title'].lower()
-        ]
-
-        if not matching_recipes:
-            return "No matching recipes found."
-
-        return matching_recipes
-
+        return recipes
     except FileNotFoundError:
-        return "The file 'processed_recipes.json' was not found."
+        st.error("The file 'processed_recipes.json' was not found.")
+        return []
     except json.JSONDecodeError:
-        return "Error decoding JSON."
+        st.error("Error decoding JSON.")
+        return []
 
 # Function to format recipe details
 def format_recipe_info(recipe):
@@ -33,40 +27,57 @@ def format_recipe_info(recipe):
         f"Ingredients:\n{ingredients}\n\n"
         f"Steps:\n{steps}"
     )
-
+genai.configure(api_key="YOUR_API_KEY")
+model = genai.GenerativeModel('gemini-1.5-pro-latest', generation_config={"response_mime_type": "application/json"})
 # Streamlit app
 def main():
     st.title("Recipe Search and Generation")
 
-    query = st.text_input("Enter a keyword or partial title of the recipe you want to look up:")
+    recipes = load_recipes()
 
-    if st.button("Search") or query in st.session_state:
-        st.session_state.query = query
-        matching_recipes = search_recipes(query)
-        if isinstance(matching_recipes, str):  # Error message
-            st.error(matching_recipes)
-            st.session_state.matching_recipes = None
-        else:
-            st.session_state.matching_recipes = matching_recipes
+    if recipes:
+        recipe_titles = [recipe['title'] for recipe in recipes]
+        selected_title = st.selectbox("Select a recipe:", recipe_titles)
 
-    if 'matching_recipes' in st.session_state and st.session_state.matching_recipes:
-        selected_recipe = st.selectbox("Select a recipe:", st.session_state.matching_recipes,
-                                       format_func=lambda recipe: recipe['title'])
-        selected_recipe_info = format_recipe_info(selected_recipe)
-        st.text_area("Selected Recipe Information:", value=selected_recipe_info, key='recipe_info')
+        # Find the selected recipe from the list of recipes
+        selected_recipe = next((recipe for recipe in recipes if recipe['title'] == selected_title), None)
 
-        if st.button("Generate JSON"):
-            # Replace this section with your actual JSON generation logic
-            recipe_data = {
-                "recipe_title": selected_recipe['title'],
-                "ingredients": selected_recipe['ingredients'],
-                "steps": selected_recipe['steps']
-            }
-            st.json(recipe_data)
-            with open("actions.json", "w") as outfile:
-                json.dump(recipe_data, outfile, indent=2)
-            st.success("JSON file generated and saved as 'actions.json'.")
+        if selected_recipe:
+            selected_recipe_info = format_recipe_info(selected_recipe)
+            st.text_area("Selected Recipe Information:", value=selected_recipe_info, key='recipe_info')
 
+            if st.button("Generate JSON"):
+                response = model.generate_content(
+                f"Using the recipe details: {selected_recipe_info}, create a JSON file with precise step-by-step actions for a "
+                "cooking machine. The JSON should follow this exact format:\n\n"
+                "{\n"
+                "  \"steps\": [\n"
+                "    {\n"
+                "      \"step\": <int>,\n"
+                "      \"action\": \"<string>\",\n"
+                "      \"ingredients\": [\n"
+                "        {\n"
+                "          \"name\": \"<string>\",\n"
+                "          \"quantity\": <float>,\n"
+                "          \"unit\": \"<string>\"\n"
+                "        }\n"
+                "      ],\n"
+                "      \"parameters\": \"<string>\",\n"
+                "      \"time\": <int>\n"
+                "    }\n"
+                "  ]\n"
+                "}"
+            )
+            json_string = response.text.replace('\\', '').replace('\n', '')
+            try:
+                recipe_data = json.loads(json_string)
+                st.json(recipe_data)
+                with open("actions.json", "w") as outfile:
+                    json.dump(recipe_data, outfile, indent=2)
+                st.success("JSON file generated and saved as 'actions.json'.")
+            except json.JSONDecodeError as e:
+                st.error(f"Error decoding JSON: {e}")
+    
     # CSS for dynamic text_area height based on content
     st.markdown("""
         <style>

@@ -1,1 +1,213 @@
-actions for the machine will be written here after selecting a recipe through the GUI.
+{
+  "steps": [
+    {
+      "step": 1,
+      "action": "Deseed",
+      "ingredients": [
+        {
+          "name": "Karela (Bitter Gourd/ Pavakkai)",
+          "quantity": 6.0,
+          "unit": "count"
+        }
+      ],
+      "parameters": "",
+      "time": null
+    },
+    {
+      "step": 2,
+      "action": "Slice",
+      "ingredients": [
+        {
+          "name": "Karela (Bitter Gourd/ Pavakkai)",
+          "quantity": 6.0,
+          "unit": "count"
+        }
+      ],
+      "parameters": "",
+      "time": null
+    },
+    {
+      "step": 3,
+      "action": "Add",
+      "ingredients": [
+        {
+          "name": "Karela (Bitter Gourd/ Pavakkai)",
+          "quantity": 6.0,
+          "unit": "count"
+        },
+        {
+          "name": "Water",
+          "quantity": 3.0,
+          "unit": "tablespoon"
+        },
+        {
+          "name": "Salt",
+          "quantity": null,
+          "unit": "to taste"
+        },
+        {
+          "name": "Turmeric powder",
+          "quantity": 2.0,
+          "unit": "teaspoon"
+        }
+      ],
+      "parameters": "Inside the pressure cooker",
+      "time": null
+    },
+    {
+      "step": 4,
+      "action": "Pressure cook",
+      "ingredients": [],
+      "parameters": "3 whistles",
+      "time": null
+    },
+    {
+      "step": 5,
+      "action": "Release pressure",
+      "ingredients": [],
+      "parameters": "Immediately",
+      "time": null
+    },
+    {
+      "step": 6,
+      "action": "Heat",
+      "ingredients": [
+        {
+          "name": "Sunflower Oil",
+          "quantity": null,
+          "unit": "as required"
+        }
+      ],
+      "parameters": "Heavy bottomed pan or a kadhai",
+      "time": null
+    },
+    {
+      "step": 7,
+      "action": "Add",
+      "ingredients": [
+        {
+          "name": "Cumin seeds",
+          "quantity": 2.0,
+          "unit": "teaspoon"
+        }
+      ],
+      "parameters": "",
+      "time": null
+    },
+    {
+      "step": 8,
+      "action": "Simmer",
+      "ingredients": [],
+      "parameters": "Until the cumin seeds sizzle",
+      "time": null
+    },
+    {
+      "step": 9,
+      "action": "Add",
+      "ingredients": [
+        {
+          "name": "Onion",
+          "quantity": 1.0,
+          "unit": "count"
+        }
+      ],
+      "parameters": "",
+      "time": null
+    },
+    {
+      "step": 10,
+      "action": "Saute",
+      "ingredients": [],
+      "parameters": "Until golden brown",
+      "time": null
+    },
+    {
+      "step": 11,
+      "action": "Add",
+      "ingredients": [
+        {
+          "name": "Karela (Bitter Gourd/ Pavakkai)",
+          "quantity": 6.0,
+          "unit": "count"
+        },
+        {
+          "name": "Red Chilli powder",
+          "quantity": 1.0,
+          "unit": "tablespoon"
+        },
+        {
+          "name": "Amchur (Dry Mango Powder)",
+          "quantity": 1.0,
+          "unit": "tablespoon"
+        },
+        {
+          "name": "Coriander Powder",
+          "quantity": 1.0,
+          "unit": "tablespoon"
+        },
+        {
+          "name": "Gram flour",
+          "quantity": 3.0,
+          "unit": "tablespoon"
+        }
+      ],
+      "parameters": "",
+      "time": null
+    },
+    {
+      "step": 12,
+      "action": "Stir",
+      "ingredients": [],
+      "parameters": "Combine well",
+      "time": null
+    },
+    {
+      "step": 13,
+      "action": "Drizzle",
+      "ingredients": [
+        {
+          "name": "Sunflower Oil",
+          "quantity": null,
+          "unit": "as required"
+        }
+      ],
+      "parameters": "On top",
+      "time": null
+    },
+    {
+      "step": 14,
+      "action": "Mix",
+      "ingredients": [],
+      "parameters": "",
+      "time": null
+    },
+    {
+      "step": 15,
+      "action": "Cover",
+      "ingredients": [],
+      "parameters": "",
+      "time": null
+    },
+    {
+      "step": 16,
+      "action": "Simmer",
+      "ingredients": [],
+      "parameters": "Until everything comes together well, stirring occasionally",
+      "time": null
+    },
+    {
+      "step": 17,
+      "action": "Turn off",
+      "ingredients": [],
+      "parameters": "Heat",
+      "time": null
+    },
+    {
+      "step": 18,
+      "action": "Transfer",
+      "ingredients": [],
+      "parameters": "Serving bowl",
+      "time": null
+    }
+  ]
+}
