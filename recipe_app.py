@@ -27,8 +27,11 @@ def format_recipe_info(recipe):
         f"Ingredients:\n{ingredients}\n\n"
         f"Steps:\n{steps}"
     )
-genai.configure(api_key="YOUR_API_KEY")
+
+# Configure Google Generative AI
+genai.configure(api_key='AIzaSyCURo4TsfWgX9Wbo7ujqhvzr8yi9RVtdYY')
 model = genai.GenerativeModel('gemini-1.5-pro-latest', generation_config={"response_mime_type": "application/json"})
+
 # Streamlit app
 def main():
     st.title("Recipe Search and Generation")
@@ -45,48 +48,46 @@ def main():
         if selected_recipe:
             selected_recipe_info = format_recipe_info(selected_recipe)
             st.text_area("Selected Recipe Information:", value=selected_recipe_info, key='recipe_info')
+            st.write("<style> .stTextArea.recipe_info { overflow: hidden; } </style>", unsafe_allow_html=True)
 
             if st.button("Generate JSON"):
+                # Generate the content using Google Generative AI
                 response = model.generate_content(
-                f"Using the recipe details: {selected_recipe_info}, create a JSON file with precise step-by-step actions for a "
-                "cooking machine. The JSON should follow this exact format:\n\n"
-                "{\n"
-                "  \"steps\": [\n"
-                "    {\n"
-                "      \"step\": <int>,\n"
-                "      \"action\": \"<string>\",\n"
-                "      \"ingredients\": [\n"
-                "        {\n"
-                "          \"name\": \"<string>\",\n"
-                "          \"quantity\": <float>,\n"
-                "          \"unit\": \"<string>\"\n"
-                "        }\n"
-                "      ],\n"
-                "      \"parameters\": \"<string>\",\n"
-                "      \"time\": <int>\n"
-                "    }\n"
-                "  ]\n"
-                "}"
-            )
-            json_string = response.text.replace('\\', '').replace('\n', '')
-            try:
-                recipe_data = json.loads(json_string)
-                st.json(recipe_data)
-                with open("actions.json", "w") as outfile:
-                    json.dump(recipe_data, outfile, indent=2)
-                st.success("JSON file generated and saved as 'actions.json'.")
-            except json.JSONDecodeError as e:
-                st.error(f"Error decoding JSON: {e}")
-    
+                    f"Using the recipe details: {selected_recipe_info}, create a JSON file with precise step-by-step actions for a "
+                    "cooking machine. The JSON should follow this exact format:\n\n"
+                    "{\n"
+                    "  \"steps\": [\n"
+                    "    {\n"
+                    "      \"step\": <int>,\n"
+                    "      \"action\": \"<string>\",\n"
+                    "      \"ingredients\": [\n"
+                    "        {\n"
+                    "          \"name\": \"<string>\",\n"
+                    "          \"quantity\": <float>,\n"
+                    "          \"unit\": \"<string>\"\n"
+                    "        }\n"
+                    "      ],\n"
+                    "      \"parameters\": \"<string>\",\n"
+                    "      \"time\": <int>\n"
+                    "    }\n"
+                    "  ]\n"
+                    "}"
+                )
+
+                try:
+                    # Ensure the response is valid before loading it into JSON
+                    recipe_data = json.loads(response.text)
+                    st.json(recipe_data)
+
+                    # Save the generated JSON to a file
+                    with open("actions.json", "w") as outfile:
+                        json.dump(recipe_data, outfile, indent=2)
+                    st.success("JSON file generated and saved as 'actions.json'.")
+                except json.JSONDecodeError as e:
+                    st.error(f"Error decoding JSON: {e}")
+
     # CSS for dynamic text_area height based on content
-    st.markdown("""
-        <style>
-            .st-eb {
-                height: auto !important;
-                min-height: 200px;
-            }
-        </style>
-    """, unsafe_allow_html=True)
+    
 
 if __name__ == "__main__":
     main()
