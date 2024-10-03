@@ -29,7 +29,7 @@ def format_recipe_info(recipe):
     )
 
 # Configure Google Generative AI
-genai.configure(api_key='AIzaSyCURo4TsfWgX9Wbo7ujqhvzr8yi9RVtdYY')
+genai.configure(api_key='YOUR_API_KEY')
 model = genai.GenerativeModel('gemini-1.5-pro-latest', generation_config={"response_mime_type": "application/json"})
 
 # Streamlit app
