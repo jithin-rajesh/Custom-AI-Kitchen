@@ -104,9 +104,19 @@ def main():
             st.text_area("Adjusted Ingredients:", value="\n".join(adjusted_quantities), height=200)
 
             if st.button("Generate JSON"):
+                # Construct the adjusted recipe details for the prompt
+                adjusted_recipe_info = (
+                    f"Title: {selected_recipe['title']}\n"
+                    f"Prep Time: {selected_recipe['prep']} minutes\n"
+                    f"Cook Time: {selected_recipe['cook']} minutes\n"
+                    f"Servings: {selected_recipe['servings']}\n\n"
+                    f"Ingredients:\n" + "\n".join(adjusted_quantities) + "\n\n"
+                    f"Steps:\n{'\n'.join(selected_recipe['steps'])}"
+                )
+
                 # Generate the content using Google Generative AI
                 response = model.generate_content(
-                    f"Using the recipe details: {selected_recipe_info}, create a JSON file with precise step-by-step actions for a "
+                    f"Using the recipe details: {adjusted_recipe_info}, create a JSON file with precise step-by-step actions for a "
                     "cooking machine. The JSON should follow this exact format:\n\n"
                     "{\n"
                     "  \"steps\": [\n"
